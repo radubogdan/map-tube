@@ -1,14 +1,14 @@
 module Map
   module Tube
     class Graph
-      attr_accessor :nodes
+      attr_accessor :stations
 
       def initialize
-        @nodes = []
+        @stations = []
       end
 
-      def add_node(node)
-        @nodes << node
+      def add_station(station)
+        @stations << station
       end
     end
   end

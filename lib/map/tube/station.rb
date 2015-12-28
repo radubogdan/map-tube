@@ -1,6 +1,6 @@
 module Map
   module Tube
-    class Node
+    class Station
       def initialize(id, name, line, link)
         @id = id
         @name = name

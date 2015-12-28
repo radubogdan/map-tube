@@ -16,12 +16,12 @@ module Map
       def parse_stations!
         stations = @document.search("//stations/station")
         stations.each do |station|
-          node = Node.new(
+          node = Station.new(
             station["id"],
             station["name"],
             station["line"],
             station["link"])
-          @graph.add_node(node)
+          @graph.add_station(node)
         end
       end
     end
