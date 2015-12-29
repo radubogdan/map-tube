@@ -1,5 +1,5 @@
-require "map/tube/version"
 require "nokogiri"
+require "map/tube/version"
 require "map/tube/station"
 require "map/tube/line"
 require "map/tube/graph"
