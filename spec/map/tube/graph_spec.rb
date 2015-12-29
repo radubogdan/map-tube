@@ -25,7 +25,7 @@ describe Map::Tube::Graph do
     end
     it "should return an exception if station with that id does not exist" do
       subject.add_station(station)
-      expect { subject.get_station_by_id("2") }.to raise_error(Map::Tube::Exceptions::StationError)
+      expect { subject.get_station_by_id("2") }.to raise_error(Map::Tube::Exceptions::StationException)
     end
   end
 
@@ -36,7 +36,7 @@ describe Map::Tube::Graph do
     end
     it "should return an exception if station with that name does not exist" do
       subject.add_station(station)
-      expect { subject.get_station_by_name("Another Station") }.to raise_error(Map::Tube::Exceptions::StationError)
+      expect { subject.get_station_by_name("Another Station") }.to raise_error(Map::Tube::Exceptions::StationException)
     end
   end
 
@@ -48,7 +48,7 @@ describe Map::Tube::Graph do
 
     it "should return an exception if line with that id does not exist" do
       subject.add_line(line)
-      expect { subject.get_line_by_id("2") }.to raise_error(Map::Tube::Exceptions::LineError)
+      expect { subject.get_line_by_id("2") }.to raise_error(Map::Tube::Exceptions::LineException)
     end
   end
 
@@ -60,7 +60,7 @@ describe Map::Tube::Graph do
 
     it "should return an exception if line with that name does not exist" do
       subject.add_line(line)
-      expect { subject.get_line_by_name("Line 2") }.to raise_error(Map::Tube::Exceptions::LineError)
+      expect { subject.get_line_by_name("Line 2") }.to raise_error(Map::Tube::Exceptions::LineException)
     end
   end
 

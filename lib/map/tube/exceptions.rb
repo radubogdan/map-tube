@@ -1,7 +1,8 @@
 module Map
   module Tube
     module Exceptions
-      class StationError < StandardError; end
+      class StationException < StandardError; end
+      class LineException < StandardError; end
     end
   end
 end
