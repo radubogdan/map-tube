@@ -16,6 +16,12 @@ module Map
         @lines << line
       end
 
+      def get_shortest_route(from_station_name, to_station_name)
+        from_station = get_station_by_name(from_station_name)
+        to_station = get_station_by_name(to_station_name)
+        compute_shortest_path(from_station, to_station)
+      end
+
       def get_station_by_id(station_id)
         find_by(:station, :id, station_id)
       end
@@ -36,12 +42,44 @@ module Map
 
       def find_by(model, attribute, value)
         get_instance_for_model(model).each do |obj|
-          if obj.send(attribute) == value
-            return obj
-          else
-            raise_error_for_model(model, attribute, value)
+          return obj if obj.send(attribute) == value
+        end
+
+        raise_error_for_model(model, attribute, value)
+      end
+
+      def compute_shortest_path(from_station, to_station)
+        raise Map::Tube::Exceptions::RouteException,
+          "Stations must be different" if from_station.id == to_station.id
+
+        visited, queue, path = [], [], []
+        edge = {}
+
+        queue << from_station
+        visited << from_station
+
+        while queue.any?
+          curr_station = queue.shift
+          curr_station.links.each do |link|
+            next_station = get_station_by_id(link)
+            next if visited.include?(next_station)
+            queue << next_station
+            visited << next_station
+            edge[link] = curr_station
           end
         end
+
+        # Not really necessary cause we have Exceptions but stil..
+        return unless visited.include?(to_station)
+
+        loop do
+          to_station = edge[to_station.id]
+          path.unshift(to_station)
+          # Break when the from and to are the same or the next station is the last one
+          break if to_station.id == from_station.id || to_station.links.include?(from_station.id)
+        end
+
+        path
       end
 
       def get_instance_for_model(model)
