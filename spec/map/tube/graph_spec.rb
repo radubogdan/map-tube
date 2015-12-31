@@ -12,15 +12,38 @@ describe Map::Tube::Graph do
 
   describe "#add_station" do
     it "should add a new station in the graph" do
-      subject.add_station(Map::Tube::Station.new("1", "Test station", "2"))
+      station = Map::Tube::Station.new("1", "Test station", "2")
+      subject.add_station(station)
       expect(subject.stations.map(&:name)).to include station.name
     end
   end
 
   describe "#add_line" do
     it "should add a new line in the graph" do
-      subject.add_line(Map::Tube::Line.new("1", "Line 1", "black"))
+      line = Map::Tube::Line.new("1", "Line 1", "black")
+      subject.add_line(line)
       expect(subject.lines.map(&:name)).to include line.name
+    end
+  end
+
+  describe "#get_shortest_route" do
+    it "should raise Exception if departure and arrival are the same" do
+      expect { subject.get_shortest_route("Dristor 2", "Dristor 2") }.to raise_error(Map::Tube::Exceptions::RouteException)
+    end
+    it "should return a Map::Tube::Route object" do
+      expect(subject.get_shortest_route("Dristor 2", "Obor").class).to eq Map::Tube::Route
+    end
+    it "should return no path when arrival is departure - 1 in distance" do
+      route = subject.get_shortest_route("Dristor 2", "Piața Muncii")
+      expect(route.intermediate_stations.count).to eq 0
+    end
+    it "should return correct path for a single line" do
+      route = subject.get_shortest_route("Dristor 2", "Obor")
+      expect(route.intermediate_stations.map(&:name)).to eq ["Piața Muncii", "Iancului"]
+    end
+    it "should return correct path on multi-line routes" do
+      route = subject.get_shortest_route("Obor", "1 Mai")
+      expect(route.intermediate_stations.map(&:name)).to eq ["Ștefan cel Mare", "Piața Victoriei", "Gara de Nord", "Basarab", "Basarab", "Grivița"]
     end
   end
 

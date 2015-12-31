@@ -60,6 +60,8 @@ module Map
 
         while queue.any?
           curr_station = queue.shift
+          break if curr_station.id == to_station.id
+
           curr_station.links.each do |link|
             next_station = get_station_by_id(link)
             next if visited.include?(next_station)
@@ -69,13 +71,10 @@ module Map
           end
         end
 
-        # return unless visited.include?(to_station)
-
         loop do
           to_station = edge[to_station.id]
+          break if to_station.id == from_station.id
           route.intermediate_stations.unshift(to_station)
-          # Break when the from and to are the same or the next station is the last one
-          break if to_station.id == from_station.id || to_station.links.include?(from_station.id)
         end
 
         route
