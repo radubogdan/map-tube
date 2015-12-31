@@ -2,21 +2,34 @@ require 'spec_helper'
 require 'nokogiri'
 
 describe Map::Tube::Parser do
-  let(:xml_doc) {
-    Nokogiri::XML("<station id='M1-01' name='Dristor 2' line='M1:1' link='M1-02'/>")
+  let(:subject) {
+    Map::Tube::Parser.
+      new(File.
+        open("spec/fixtures/bucharest-map.xml") { |f|
+          Nokogiri::XML(f)
+        }
+      )
   }
 
   describe "#initialize" do
     it "should get a Nokogiri object and correctly initialize" do
-      parser = Map::Tube::Parser.new(xml_doc)
-      expect(parser.class).to eq Map::Tube::Parser
+      expect(subject.class).to eq Map::Tube::Parser
     end
   end
 
-  describe "#parse" do
+  describe "#parse!" do
     it "should return successfully without error" do
-      parser = Map::Tube::Parser.new(xml_doc)
-      parser.parse!
+      subject.parse!
+    end
+
+    it "should return a graph with 57 stations" do
+      graph = subject.parse!
+      expect(graph.stations.count).to eq(57)
+    end
+
+    it "should return a graph with 4 lines" do
+      graph = subject.parse!
+      expect(graph.lines.count).to eq(4)
     end
   end
 end

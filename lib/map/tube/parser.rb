@@ -23,7 +23,7 @@ module Map
             station["line"][/(.*):/, 1])
 
           links = station["link"].split(",")
-          links += station["other_link"].split(",") if station["other_link"]
+          links += compute_other_links(station["other_link"]) if station["other_link"]
           links.each { |link| current_station.add_link(link) }
 
           @graph.add_station(current_station)
@@ -38,7 +38,8 @@ module Map
         end
       end
 
-      def get_station_links(station)
+      def compute_other_links(links)
+        links.split(",").map! { |e| e.split(":")[1] }
       end
     end
   end

@@ -3,7 +3,7 @@ require "set"
 module Map
   module Tube
     class Station
-      attr_accessor :id, :name, :line
+      attr_accessor :id, :name, :line, :links
 
       def initialize(id, name, line)
         @id = id
