@@ -3,6 +3,7 @@ require "map/tube/version"
 require "map/tube/exceptions"
 require "map/tube/station"
 require "map/tube/line"
+require "map/tube/route"
 require "map/tube/graph"
 require "map/tube/parser"
 

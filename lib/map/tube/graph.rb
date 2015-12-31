@@ -49,10 +49,10 @@ module Map
       end
 
       def compute_shortest_path(from_station, to_station)
-        raise Map::Tube::Exceptions::RouteException,
-          "Stations must be different" if from_station.id == to_station.id
+        raise_error_for_model(:route) if from_station.id == to_station.id
 
-        visited, queue, path = [], [], []
+        route = Map::Tube::Route.new(from_station, to_station)
+        visited, queue = [], []
         edge = {}
 
         queue << from_station
@@ -69,17 +69,16 @@ module Map
           end
         end
 
-        # Not really necessary cause we have Exceptions but stil..
-        return unless visited.include?(to_station)
+        # return unless visited.include?(to_station)
 
         loop do
           to_station = edge[to_station.id]
-          path.unshift(to_station)
+          route.intermediate_stations.unshift(to_station)
           # Break when the from and to are the same or the next station is the last one
           break if to_station.id == from_station.id || to_station.links.include?(from_station.id)
         end
 
-        path
+        route
       end
 
       def get_instance_for_model(model)
@@ -89,12 +88,14 @@ module Map
         }[model]
       end
 
-      def raise_error_for_model(model, attribute, value)
+      def raise_error_for_model(model, attribute=nil, value=nil)
         case model
         when :station
           raise(Map::Tube::Exceptions::StationException, "Station with #{attribute}='#{value}' does not exist")
         when :line
           raise(Map::Tube::Exceptions::LineException, "Line with #{attribute}='#{value}' does not exist")
+        when :route
+          raise(Map::Tube::Exceptions::RouteException, "Stations must be different")
         end
       end
     end
