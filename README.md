@@ -1,8 +1,6 @@
 # Map::Tube
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/map/tube`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+The core module to process the map data. It provides the interface to find the shortest route in terms of stoppage between two nodes.
 
 ## Installation
 
@@ -22,20 +20,67 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+**Example**
 
-## Development
+```
+path = "spec/fixtures/bucharest-map.xml"
+bucharest = Map::Tube.new_from_xml(path)
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+# Get all the line names
+bucharest.lines.map(&:name) # => ["Linia M1", "Linia M2", "Linia M3", "Linia M4"]
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+# Get all the station names
+bucharest.stations.map(&:name)
+
+# Get the shortest path between two stations
+route = bucharest.get_shortest_route("Dristor 1", "Pipera")
+
+# => #<Map::Tube::Route:0x007f9769c5a550
+ @arrival_station=#<Map::Tube::Station:0x007f976a08e310 @id="M2-01", @line="M2", @links=#<Set: {"M2-02"}>, @name="Pipera">,
+ @departure_station=#<Map::Tube::Station:0x007f976a08fa30 @id="M1-17", @line="M1", @links=#<Set: {"M1-16", "M1-18", "M3-11"}>, @name="Dristor 1">,
+ @intermediate_stations=
+  [#<Map::Tube::Station:0x007f976a08ff58 @id="M1-16", @line="M1", @links=#<Set: {"M1-15", "M1-17", "M3-10"}>, @name="Mihai Bravu">,
+   #<Map::Tube::Station:0x007f97698261f0 @id="M1-15", @line="M1", @links=#<Set: {"M1-14", "M1-16", "M3-09"}>, @name="Timpuri Noi">,
+   #<Map::Tube::Station:0x007f976982c208 @id="M1-14", @line="M1", @links=#<Set: {"M1-13", "M1-15", "M3-08", "M2-07"}>, @name="Piața Unirii 1">,
+   #<Map::Tube::Station:0x007f976a08cdd0 @id="M2-07", @line="M2", @links=#<Set: {"M2-06", "M2-08", "M3-08"}>, @name="Piața Unirii 2">,
+   #<Map::Tube::Station:0x007f976a08d118 @id="M2-06", @line="M2", @links=#<Set: {"M2-05", "M2-07"}>, @name="Universitate">,
+   #<Map::Tube::Station:0x007f976a08d460 @id="M2-05", @line="M2", @links=#<Set: {"M2-04", "M2-06"}>, @name="Piața Romană">,
+   #<Map::Tube::Station:0x007f976a08d988 @id="M2-04", @line="M2", @links=#<Set: {"M2-03", "M2-05", "M1-06"}>, @name="Piața Victoriei">,
+   #<Map::Tube::Station:0x007f976a08dcd0 @id="M2-03", @line="M2", @links=#<Set: {"M2-02", "M2-04"}>, @name="Aviatorilor">,
+   #<Map::Tube::Station:0x007f976a08e018 @id="M2-02", @line="M2", @links=#<Set: {"M2-01", "M2-03"}>, @name="Aurel Vlaicu">]>
+
+[route.departure_station.name, route.intermediate_stations.map(&:name), route.arrival_station.name].flatten.join(" -> ")
+# => "Dristor 1 -> Mihai Bravu -> Timpuri Noi -> Piața Unirii 1 -> Piața Unirii 2 -> Universitate -> Piața Romană -> Piața Victoriei -> Aviatorilor -> Aurel Vlaicu -> Pipera"
+```
+
+**Methods**
+
+- Map::Tube
+  - `new_from_xml(path_to_xml) => Map::Tube::Graph`
+- Map::Tube::Graph
+  - `#stations`
+  - `#lines`
+  - `#get_shortest_route(from_station_name, to_station_name) => Map::Tube::Route`
+    - from_station_name - String - Name of departure station
+    - to_station_name - String - Name of arrival station
+  - `#get_station_by_id(station_id) => Map::Tube::Station`
+    - station_id - String - Unique identifier of the station
+  - `#get_station_by_name(station_name) => Map::Tube::Station`
+    - station_name - String - Name of the station
+  - `#get_line_by_id(line_id) => Map::Tube::Line`
+    - line_id - String - Unique identifier of the line
+  - `#get_line_by_name(line_name) => Map::Tube::Line`
+    - line_name - String - Name of the line
+  - `#add_line(line) => Map::Tube::Graph`
+    - line - Map::Tube::Line object
+  - `#add_station(station) => Map::Tube::Graph`
+    - station - Map::Tube::Station object
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/map-tube.
+Bug reports and pull requests are welcome on GitHub at [radubogdan/map-tube](https://github.com/radubogdan/map-tube).
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-

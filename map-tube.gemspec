@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Radu-Bogdan Croitoru"]
   spec.email         = ["croitoruradubogdan@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Core library to process the map data}
+  spec.description   = %q{The core module to process the map data. It provides the the interface to find the shortest route in terms of stoppage between two nodes.}
+  spec.homepage      = "https://github.com/radubogdan/map-tube"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
