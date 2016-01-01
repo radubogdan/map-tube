@@ -51,7 +51,7 @@ module Map
       def compute_shortest_path(from_station, to_station)
         raise_error_for_model(:route) if from_station.id == to_station.id
 
-        route = Map::Tube::Route.new(from_station, to_station)
+        route = Route.new(from_station, to_station)
         visited, queue = [], []
         edge = {}
 

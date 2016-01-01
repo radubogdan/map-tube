@@ -8,6 +8,12 @@ module Map
         @arrival_station = arrival_station
         @intermediate_stations = []
       end
+
+      def pretty
+        [self.departure_station.name,
+          self.intermediate_stations.map(&:name),
+          self.arrival_station.name].flatten.join(" -> ")
+      end
     end
   end
 end
