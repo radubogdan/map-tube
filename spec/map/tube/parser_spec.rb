@@ -5,14 +5,12 @@ describe Map::Tube::Parser do
   let(:subject) {
     Map::Tube::Parser.
       new(File.
-        open("spec/fixtures/bucharest-map.xml") { |f|
-          Nokogiri::XML(f)
-        }
+        open("data/bucharest-map.xml")
       )
   }
 
   describe "#initialize" do
-    it "should get a Nokogiri object and correctly initialize" do
+    it "should get a File object and correctly initialize" do
       expect(subject.class).to eq Map::Tube::Parser
     end
   end

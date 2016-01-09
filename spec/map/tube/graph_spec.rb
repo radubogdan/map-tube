@@ -4,9 +4,7 @@ describe Map::Tube::Graph do
   let(:subject) {
     Map::Tube::Parser.
       new(File.
-        open("spec/fixtures/bucharest-map.xml") { |f|
-          Nokogiri::XML(f)
-        }
+        open("data/bucharest-map.xml")
       ).parse!
   }
 
