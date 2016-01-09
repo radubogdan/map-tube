@@ -2,7 +2,7 @@ module Map
   module Tube
     class Parser
       def initialize(doc)
-        @document = doc
+        @document = Nokogiri::XML(doc)
         @graph = Graph.new
       end
 
