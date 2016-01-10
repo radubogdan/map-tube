@@ -1,0 +1,105 @@
+<tube name="NYC Subway">
+  <lines>
+      <line id="IND Eighth Avenue"    name="IND Eighth Avenue"    color="#000080" /> <!-- Blue   -->
+      <line id="IND Sixth Avenue"     name="IND Sixth Avenue"     color="#FF4F00" /> <!-- Orange -->
+      <line id="IND Crosstown"        name="IND Crosstown"        color="#006400" /> <!-- Green  -->
+      <line id="BMT Canarsie"         name="BMT Canarsie"         color="#2F4F4F" /> <!-- Gray   -->
+      <line id="BMT Nassau Street"    name="BMT Nassau Street"    color="#550000" /> <!-- Brown  -->
+      <line id="BMT Broadway"         name="BMT Broadway"         color="#FFFF00" /> <!-- Yellow -->
+      <line id="IRT Broadway"         name="IRT Broadway"         color="#8B0000" /> <!-- Red    -->
+      <line id="IRT Lexington Avenue" name="IRT Lexington Avenue" color="#006400" /> <!-- Green  -->
+      <line id="IRT Flushing"         name="IRT Flushing"         color="#871F78" /> <!-- Purple -->
+  </lines>
+
+  <stations>
+    <station id="COURT-SQUARE"       name="Court Square"       line="IND Crosstown,IRT Flushing"                                            link="FL15,FL17,CT02"                             />
+    <station id="42nd-STREET"        name="42nd Street"        line="IND Eighth Avenue,IRT Broadway,IRT Flushing"                           link="EA22,EA20,FL20,FL22"                        />
+    <station id="59th-STREET"        name="59th Street"        line="IND Eighth Avenue,IRT Broadway"                                        link="EA20,EA18"                                  />
+    <station id="HERALD-SQUARE"      name="Herald Square"      line="IND Sixth Avenue,BMT Broadway"                                         link="SA04,23rd-STREET"                           />
+    <station id="14th-STREET"        name="14th Street"        line="IND Sixth Avenue,IRT Broadway"                                         link="23rd-STREET,WEST-FOURTH-STREET"             />
+    <station id="UNION-SQUARE"       name="Union Square"       line="IND Eighth Avenue,BMT Canarsie"                                        link="WEST-FOURTH-STREET,23rd-STREET"             />
+    <station id="WEST-FOURTH-STREET" name="West Fourth Street" line="IND Sixth Avenue,IND Eighth Avenue"                                    link="14th-STREET,SA09,UNION-SQUARE,EA26"         />
+    <station id="FULTON-STREET"      name="Fulton Street"      line="IND Eighth Avenue,IRT Broadway,IRT Lexington Avenue,BMT Nassau Street" link="EA30,EA28"                                  />
+    <station id="23rd-STREET"        name="23rd Street"        line="IND Sixth Avenue,IND Eighth Avenue"                                    link="HERALD-SQUARE,14th-STREET,UNION-SQUARE,EA22"/>
+
+    <!-- http://en.wikipedia.org/wiki/IND_Eighth_Avenue_Line -->
+    <station id="EA01" name="207th Street"                    line="IND Eighth Avenue" link="EA02"                     />
+    <station id="EA02" name="Dyckman Street"                  line="IND Eighth Avenue" link="EA03,EA01"                />
+    <station id="EA03" name="190th Street"                    line="IND Eighth Avenue" link="EA04,EA02"                />
+    <station id="EA04" name="181st Street"                    line="IND Eighth Avenue" link="EA05,EA03"                />
+    <station id="EA05" name="175th Street"                    line="IND Eighth Avenue" link="EA06,EA04"                />
+    <station id="EA06" name="168th Street"                    line="IND Eighth Avenue" link="EA07,EA05"                />
+    <station id="EA07" name="163rd Street"                    line="IND Eighth Avenue" link="EA08,EA06"                />
+    <station id="EA08" name="155th Street"                    line="IND Eighth Avenue" link="EA09,EA07"                />
+    <station id="EA09" name="145th Street"                    line="IND Eighth Avenue" link="EA10,EA08"                />
+    <station id="EA10" name="135th Street"                    line="IND Eighth Avenue" link="EA11,EA09"                />
+    <station id="EA11" name="125th Street"                    line="IND Eighth Avenue" link="EA12,EA10"                />
+    <station id="EA12" name="116th Street"                    line="IND Eighth Avenue" link="EA13,EA11"                />
+    <station id="EA13" name="110th Street"                    line="IND Eighth Avenue" link="EA14,EA12"                />
+    <station id="EA14" name="103rd Street"                    line="IND Eighth Avenue" link="EA15,EA13"                />
+    <station id="EA15" name="96th Street"                     line="IND Eighth Avenue" link="EA16,EA14"                />
+    <station id="EA16" name="86th Street"                     line="IND Eighth Avenue" link="EA17,EA15"                />
+    <station id="EA17" name="81st Street"                     line="IND Eighth Avenue" link="EA18,EA16"                />
+    <station id="EA18" name="72nd Street"                     line="IND Eighth Avenue" link="59th-STREET,EA17"         />
+    <station id="EA20" name="50th Street"                     line="IND Eighth Avenue" link="42nd-STREET,59th-STREET"  />
+    <station id="EA22" name="34th Street"                     line="IND Eighth Avenue" link="23rd-STREET,42nd-STREET"  />
+    <station id="EA26" name="Spring Street"                   line="IND Eighth Avenue" link="EA27,WEST-FOURTH-STREET"  />
+    <station id="EA27" name="Canal Street"                    line="IND Eighth Avenue" link="EA28,EA26"                />
+    <station id="EA28" name="Chambers Street"                 line="IND Eighth Avenue" link="FULTON-STREET,EA27"       />
+    <station id="EA30" name="High Street"                     line="IND Eighth Avenue" link="FULTON-STREET"            />
+
+    <!-- http://en.wikipedia.org/wiki/IND_Sixth_Avenue_Line -->
+    <station id="SA01" name="57th Street"                     line="IND Sixth Avenue"  link="SA02"                     />
+    <station id="SA02" name="Seventh Avenue"                  line="IND Sixth Avenue"  link="SA01,SA03"                />
+    <station id="SA03" name="Rockefeller Center"              line="IND Sixth Avenue"  link="SA02,SA04"                />
+    <station id="SA04" name="Bryant Park"                     line="IND Sixth Avenue"  link="SA03,HERALD-SQUARE"       />
+    <station id="SA09" name="Lafayette Street"                line="IND Sixth Avenue"  link="WEST-FOURTH-STREET,SA10"  />
+    <station id="SA10" name="Grand Street"                    line="IND Sixth Avenue"  link="SA09,SA11"                />
+    <station id="SA11" name="Second Avenue"                   line="IND Sixth Avenue"  link="SA10,SA12"                />
+    <station id="SA12" name="Delancey Avenue"                 line="IND Sixth Avenue"  link="SA11,SA13"                />
+    <station id="SA13" name="East Broadway"                   line="IND Sixth Avenue"  link="SA12,SA14"                />
+    <station id="SA14" name="York Street"                     line="IND Sixth Avenue"  link="SA13"                     />
+
+    <!-- http://en.wikipedia.org/wiki/IND_Crosstown_Line -->
+    <station id="CT02" name="21st Street"                     line="IND Crosstown"     link="COURT-SQUARE,CT03"        />
+    <station id="CT03" name="Greenpoint Avenue"               line="IND Crosstown"     link="CT02,CT04"                />
+    <station id="CT04" name="Nassau Avenue"                   line="IND Crosstown"     link="CT03,CT05"                />
+    <station id="CT05" name="Metropolitan Avenue"             line="IND Crosstown"     link="CT04,CT06"                />
+    <station id="CT06" name="Broadway"                        line="IND Crosstown"     link="CT05,CT07"                />
+    <station id="CT07" name="Flushing Avenue"                 line="IND Crosstown"     link="CT06,CT08"                />
+    <station id="CT08" name="Myrtle-Willoughby Avenues"       line="IND Crosstown"     link="CT07,CT09"                />
+    <station id="CT09" name="Bedford-Nostrand Avenues"        line="IND Crosstown"     link="CT08,CT10"                />
+    <station id="CT10" name="Classon Avenue"                  line="IND Crosstown"     link="CT09,CT11"                />
+    <station id="CT11" name="Clinton-Washington Avenues"      line="IND Crosstown"     link="CT10,CT12"                />
+    <station id="CT12" name="IND Fulton Street"               line="IND Crosstown"     link="CT11,CT13"                />
+    <station id="CT13" name="Hoyt-Schermerhorn Streets"       line="IND Crosstown"     link="CT12"                     />
+
+    <!-- http://en.wikipedia.org/wiki/BMT_Canarsie_Line -->
+    <!-- http://en.wikipedia.org/wiki/BMT_Nassau_Street_Line -->
+    <!-- http://en.wikipedia.org/wiki/BMT_Broadway_Line -->
+    <!-- http://en.wikipedia.org/wiki/IRT_Broadway_%E2%80%93_Seventh_Avenue_Line -->
+    <!-- http://en.wikipedia.org/wiki/IRT_Lexington_Avenue_Line -->
+
+    <!-- http://en.wikipedia.org/wiki/IRT_Flushing_Line -->
+    <station id="FL01" name="Flushing"                        line="IRT Flushing"      link="FL02"                     />
+    <station id="FL02" name="Willets Point"                   line="IRT Flushing"      link="FL01,FL03"                />
+    <station id="FL03" name="111th Street"                    line="IRT Flushing"      link="FL02,FL04"                />
+    <station id="FL04" name="103rd Street"                    line="IRT Flushing"      link="FL03,FL05"                />
+    <station id="FL05" name="Junction Boulevard"              line="IRT Flushing"      link="FL04,FL06"                />
+    <station id="FL06" name="90th Street"                     line="IRT Flushing"      link="FL05,FL07"                />
+    <station id="FL07" name="82nd Street"                     line="IRT Flushing"      link="FL06,FL08"                />
+    <station id="FL08" name="74th Street"                     line="IRT Flushing"      link="FL07,FL09"                />
+    <station id="FL09" name="69th Street"                     line="IRT Flushing"      link="FL08,FL10"                />
+    <station id="FL10" name="61st Street"                     line="IRT Flushing"      link="FL09,FL11"                />
+    <station id="FL11" name="52nd Street"                     line="IRT Flushing"      link="FL10,FL12"                />
+    <station id="FL12" name="46th Street"                     line="IRT Flushing"      link="FL11,FL13"                />
+    <station id="FL13" name="40th Street"                     line="IRT Flushing"      link="FL12,FL14"                />
+    <station id="FL14" name="33rd Street"                     line="IRT Flushing"      link="FL13,FL15"                />
+    <station id="FL15" name="Queensboro Plaza"                line="IRT Flushing"      link="FL14,COURT-SQUARE"        />
+    <station id="FL17" name="Hunters Point Avenue"            line="IRT Flushing"      link="COURT-SQUARE,FL18"        />
+    <station id="FL18" name="Vernon Boulevard-Jackson Avenue" line="IRT Flushing"      link="FL17,FL19"                />
+    <station id="FL19" name="Grand Central"                   line="IRT Flushing"      link="FL18,FL20"                />
+    <station id="FL20" name="Fifth Avenue"                    line="IRT Flushing"      link="FL19,42nd-STREET"         />
+    <station id="FL22" name="34th Street"                     line="IRT Flushing"      link="42nd-STREET"              />
+  </stations>
+</tube>

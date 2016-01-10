@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tube name="Barcelona Metro">
+  <lines>
+      <line id="L1"  name="L1"  color="#8B0000" /><!-- Red    -->
+      <line id="L2"  name="L2"  color="#551A8B" /><!-- Purple -->
+      <line id="L3"  name="L3"  color="#006400" /><!-- Green  -->
+      <line id="L4"  name="L4"  color="#FFFF00" /><!-- Yellow -->
+      <line id="L5"  name="L5"  color="#000080" /><!-- Blue   -->
+      <line id="L6"  name="L6"  color="#551A8B" /><!-- Purple -->
+      <line id="L7"  name="L7"  color="#550000" /><!-- Brown  -->
+      <line id="L8"  name="L8"  color="#FF4F00" /><!-- Orange -->
+      <line id="L9"  name="L9"  color="#FF4F00" /><!-- Orange -->
+      <line id="L10" name="L10" color="#000080" /><!-- Blue   -->
+      <line id="L11" name="L11" color="#006400" /><!-- Green  -->
+  </lines>
+
+  <stations>
+    <station id="TRINITAT-NOVA"     name="Trinitat Nova"       line="L3,L4,L11" link="L04-02,L11-04,L03-25"/>
+    <station id="VALL-D'HEBRON"     name="Vall d'Hebron"       line="L3,L5"     link="L03-21,L03-19"/>
+    <station id="DIAGONAL"          name="Diagonal"            line="L5,L6,L3"  link="L03-16,PASSEIG-DE-GRACIA"/>
+    <station id="PASSEIG-DE-GRACIA" name="Passeig de Gràcia"   line="L2,L3,L4"  link="L04-09,URQUINAONA,DIAGONAL,CATALUNYA"/>
+    <station id="CATALUNYA"         name="Catalunya"           line="L1,L3,L7"  link="PASSEIG-DE-GRACIA,L03-12"/>
+    <station id="PARAL-LEL"         name="Paral-lel"           line="L2,L3"     link="L03-09,L03-11"/>
+    <station id="ESPANYA"           name="Espanya"             line="L1,L3,L8"  link="L03-07,L03-09,L08-10"/>
+    <station id="SANTS-ESTACIA"     name="Sants Estació"       line="L3,L5"     link="L03-05,L03-07"/>
+    <station id="VERDAGUER"         name="Verdaguer"           line="L4,L5"     link="L04-07,L04-09,DIAGONAL"/>
+    <station id="URQUINAONA"        name="Urquinaona"          line="L1,L4"     link="PASSEIG-DE-GRACIA,L04-12"/>
+
+    <station id="L03-01"  name="Zona Universitària"            line="L3"  link="L03-02"/>
+    <station id="L03-02"  name="Palau Reial"                   line="L3"  link="L03-03,L03-01"/>
+    <station id="L03-03"  name="Maria Cristina"                line="L3"  link="L03-04,L03-02"/>
+    <station id="L03-04"  name="Les Corts"                     line="L3"  link="L03-05,L03-03"/>
+    <station id="L03-05"  name="Plaça del Centre"              line="L3"  link="SANTS-ESTACIA,L03-04"/>
+    <station id="L03-07"  name="Tarragona"                     line="L3"  link="ESPANYA,SANTS-ESTACIA"/>
+    <station id="L03-09"  name="Poble Sec"                     line="L3"  link="PARAL-LEL,ESPANYA"/>
+    <station id="L03-11"  name="Drassenes"                     line="L3"  link="L03-12,PARAL-LEL"/>
+    <station id="L03-12"  name="Liceu"                         line="L3"  link="CATALUNYA,L03-11"/>
+    <station id="L03-16"  name="Fontana"                       line="L3"  link="DIAGONAL,L03-17"/>
+    <station id="L03-17"  name="Lesseps"                       line="L3"  link="L03-16,L03-18"/>
+    <station id="L03-18"  name="Vallcarca"                     line="L3"  link="L03-17,L03-19"/>
+    <station id="L03-19"  name="Penitents"                     line="L3"  link="L03-18,VALL-D'HEBRON"/>
+    <station id="L03-21"  name="Montbau"                       line="L3"  link="VALL-D'HEBRON,L03-22"/>
+    <station id="L03-22"  name="Mundet"                        line="L3"  link="L03-21,VALL-D'HEBRON"/>
+    <station id="L03-23"  name="Validaura"                     line="L3"  link="L03-22,L03-24"/>
+    <station id="L03-24"  name="Canyelles"                     line="L3"  link="L03-23,L03-25"/>
+    <station id="L03-25"  name="Roquetes"                      line="L3"  link="L03-24,TRINITAT-NOVA"/>
+
+    <station id="L04-02"  name="Via Júlia"                     line="L4"  link="TRINITAT-NOVA,L04-03"/>
+    <station id="L04-03"  name="Llucmajor"                     line="L4"  link="L04-02,L04-04"/>
+    <station id="L04-04"  name="Maragall"                      line="L4"  link="L04-03,L04-05"/>
+    <station id="L04-05"  name="Guinardó"                      line="L4"  link="L04-04,L04-06"/>
+    <station id="L04-06"  name="Alfons X"                      line="L4"  link="L04-05,L04-07"/>
+    <station id="L04-07"  name="Joanic"                        line="L4"  link="L04-06,VERDAGUER"/>
+    <station id="L04-09"  name="Girona"                        line="L4"  link="VERDAGUER,PASSEIG-DE-GRACIA"/>
+    <station id="L04-12"  name="Jaume I"                       line="L4"  link="URQUINAONA,L04-13"/>
+    <station id="L04-13"  name="Barceloneta"                   line="L4"  link="L04-12,L04-14"/>
+    <station id="L04-14"  name="Ciutadella-Vila Olimpica"      line="L4"  link="L04-13,L04-15"/>
+    <station id="L04-15"  name="Bogatell"                      line="L4"  link="L04-14,L04-16"/>
+    <station id="L04-16"  name="Llacuna"                       line="L4"  link="L04-15,L04-17"/>
+    <station id="L04-17"  name="Poble Nou"                     line="L4"  link="L04-16,L04-18"/>
+    <station id="L04-18"  name="Selva de Mar"                  line="L4"  link="L04-17,L04-19"/>
+    <station id="L04-19"  name="El Maresme-Fòrum"              line="L4"  link="L04-18,L04-20"/>
+    <station id="L04-20"  name="Besòs Mar"                     line="L4"  link="L04-19,L04-21"/>
+    <station id="L04-21"  name="La Pau"                        line="L4"  link="L04-20"/>
+
+    <station id="L08-01"  name="Moli Nou-ciutat Cooperativa"   line="L8"  link="L08-02"/>
+    <station id="L08-02"  name="Sant Boi"                      line="L8"  link="L08-01,L08-03"/>
+    <station id="L08-03"  name="Cornella-Riera"                line="L8"  link="L08-02,L08-04"/>
+    <station id="L08-04"  name="Almeda"                        line="L8"  link="L08-03,L08-05"/>
+    <station id="L08-05"  name="Av Carrilet"                   line="L8"  link="L08-04,L08-06"/>
+    <station id="L08-06"  name="St. Josep"                     line="L8"  link="L08-05,L08-07"/>
+    <station id="L08-07"  name="Gornal"                        line="L8"  link="L08-06,L08-08"/>
+    <station id="L08-08"  name="Europa Fira"                   line="L8"  link="L08-07,L08-09"/>
+    <station id="L08-09"  name="Ildefons Cerda"                line="L8"  link="L08-08,L08-10"/>
+    <station id="L08-10"  name="Magoria La Campana"            line="L8"  link="L08-09,ESPANYA"/>
+
+    <station id="L11-01"  name="Can Cuiàs"                     line="L11" link="L11-02"/>
+    <station id="L11-02"  name="Ciutat Meridiana"              line="L11" link="L11-03,L11-01"/>
+    <station id="L11-03"  name="Torre Baró-Vallbona"           line="L11" link="L11-04,L11-02"/>
+    <station id="L11-04"  name="Casa de l'Aigua"               line="L11" link="TRINITAT-NOVA,L11-03"/>
+  </stations>
+</tube>
