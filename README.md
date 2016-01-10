@@ -171,3 +171,7 @@ Bug reports and pull requests are welcome on GitHub at [radubogdan/map-tube](htt
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+## Thanks
+
+- [Manwar](https://github.com/Manwar/Map-Tube) for the idea.
