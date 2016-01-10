@@ -9,7 +9,7 @@ describe Map::Tube::Parser do
       )
   }
 
-  describe "#initialize" do
+  describe ".initialize" do
     it "should get a File object and correctly initialize" do
       expect(subject.class).to eq Map::Tube::Parser
     end
