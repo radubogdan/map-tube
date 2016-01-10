@@ -23,8 +23,11 @@ Or install it yourself as:
 **Example**
 
 ```
-path = "spec/fixtures/bucharest-map.xml"
-bucharest = Map::Tube.new_from_xml(path)
+# Load the map and read it
+bucharest = Map::Tube.new("Bucharest").read
+
+# Or load your xml
+mycity = Map::Tube.new_from_xml("My City", "path/to/xml").read
 
 # Get all the line names
 bucharest.lines.map(&:name) # => ["Linia M1", "Linia M2", "Linia M3", "Linia M4"]
@@ -49,32 +52,85 @@ route = bucharest.get_shortest_route("Dristor 1", "Pipera")
    #<Map::Tube::Station:0x007f976a08dcd0 @id="M2-03", @line="M2", @links=#<Set: {"M2-02", "M2-04"}>, @name="Aviatorilor">,
    #<Map::Tube::Station:0x007f976a08e018 @id="M2-02", @line="M2", @links=#<Set: {"M2-01", "M2-03"}>, @name="Aurel Vlaicu">]>
 
-[route.departure_station.name, route.intermediate_stations.map(&:name), route.arrival_station.name].flatten.join(" -> ")
+# Pretty print the route
+route.pretty
 # => "Dristor 1 -> Mihai Bravu -> Timpuri Noi -> Piața Unirii 1 -> Piața Unirii 2 -> Universitate -> Piața Romană -> Piața Victoriei -> Aviatorilor -> Aurel Vlaicu -> Pipera"
 ```
 
-**Methods**
+## Documentation
 
-- Map::Tube
-  - `new_from_xml(path_to_xml) => Map::Tube::Graph`
-- Map::Tube::Graph
-  - `#stations`
-  - `#lines`
-  - `#get_shortest_route(from_station_name, to_station_name) => Map::Tube::Route`
+**Map::Tube**
+  - `.new(city_name)` *-> Map::Tube::Loader*
+  - `.new_from_xml(city_name, path_to_xml)` *-> Map::Tube::Loader*
+
+**Map::Tube::Loader**
+  - `.new(city_name, map_path=nil)`
+    - *(mandatory)* city_name - String - It should match a city in data/ dir
+    - *(optional)* map_path - String - Path to local xml
+  - `#city`
+  - `#map_path`
+  - `#read` *-> Map::Tube::Graph*
+
+**Map::Tube::Graph**
+  - `#stations` *-> Array [ Map::Tube::Station ]*
+  - `#lines` *-> Array [ Map::Tube::Line ]*
+  - `#get_shortest_route(from_station_name, to_station_name)` *-> Map::Tube::Route*
     - from_station_name - String - Name of departure station
     - to_station_name - String - Name of arrival station
-  - `#get_station_by_id(station_id) => Map::Tube::Station`
+  - `#get_station_by_id(station_id)` *-> Map::Tube::Station*
     - station_id - String - Unique identifier of the station
-  - `#get_station_by_name(station_name) => Map::Tube::Station`
+  - `#get_station_by_name(station_name)` *-> Map::Tube::Station*
     - station_name - String - Name of the station
-  - `#get_line_by_id(line_id) => Map::Tube::Line`
+  - `#get_line_by_id(line_id)` *-> Map::Tube::Line*
     - line_id - String - Unique identifier of the line
-  - `#get_line_by_name(line_name) => Map::Tube::Line`
+  - `#get_line_by_name(line_name)` *-> Map::Tube::Line*
     - line_name - String - Name of the line
-  - `#add_line(line) => Map::Tube::Graph`
+  - `#add_line(line)` *-> Map::Tube::Graph*
     - line - Map::Tube::Line object
-  - `#add_station(station) => Map::Tube::Graph`
+  - `#add_station(station)` *-> Map::Tube::Graph*
     - station - Map::Tube::Station object
+
+**Map::Tube::Line**
+  - `.new(id, name, color)`
+    - id - String - unique identifier of the Line
+    - name - String - name of the line
+    - color - String - color of the line
+  - `#id`
+  - `#name`
+  - `#color`
+
+**Map::Tube::Station**
+  - `.new(id, name, line)`
+    - id - String - unique identifier of the Station
+    - name - String - name of the Station
+    - line - String - line that supports the Station
+  - `#id`
+  - `#name`
+  - `#line`
+  - `#links` *-> Set { String }*
+  - `#add_link(link)`
+    - link - String - unique identifier of the station
+
+**Map::Tube::Route**
+  - `.new(departure_station, arrival_station)`
+    - departure_station - Map::Tube::Station
+    - arrival_station - Map::Tube::Station
+  - `#departure_station` *-> Map::Tube::Station*
+  - `#arrival_station` *-> Map::Tube::Station*
+  - `#intermediate_stations` *-> Array [ Map::Tube::Station ]*
+  - `#pretty` *-> String*
+
+**Map::Tube::Parser**
+  - `.new(file_handle)`
+    - file_handle - File.open(path)
+      - path - String - path to xml
+  - `#parse` *-> Map::Tube::Graph*
+
+**Map::Tube::Exceptions**
+  - StationException
+  - LineException
+  - RouteException
+  - CityException
 
 ## Contributing
 
