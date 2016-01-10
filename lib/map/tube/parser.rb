@@ -20,7 +20,7 @@ module Map
           current_station = Station.new(
             station["id"],
             station["name"],
-            station["line"][/(.*):/, 1])
+            parse_line(station["line"]))
 
           links = station["link"].split(",")
           links += compute_other_links(station["other_link"]) if station["other_link"]
@@ -35,6 +35,14 @@ module Map
         lines.each do |line|
           element = Line.new(line["id"], line["name"], line["color"])
           @graph.add_line(element)
+        end
+      end
+
+      def parse_line(line)
+        if line.include?(":")
+          line[/(.*):/, 1]
+        else
+          line
         end
       end
 

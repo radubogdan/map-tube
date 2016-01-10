@@ -4,7 +4,7 @@ module Map
       attr_accessor :city, :map_path
 
       def initialize(city_name, map_path=nil)
-        @city = city_name
+        @city = city_name.split(' ').join("_")
         if map_path # Always trust the path if it comes from the user
           @map_path = map_path
         else
