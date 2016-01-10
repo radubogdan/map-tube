@@ -23,6 +23,9 @@ Or install it yourself as:
 **Load maps and read them**
 
 ```ruby
+require 'map/tube'
+
+# Load from available cities
 bucharest = Map::Tube.new("Bucharest").read
 london = Map::Tube.new("London").read
 
