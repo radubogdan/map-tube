@@ -20,22 +20,48 @@ Or install it yourself as:
 
 ## Usage
 
-**Example**
+**Load maps and read them**
 
-```
-# Load the map and read it
+```ruby
 bucharest = Map::Tube.new("Bucharest").read
+london = Map::Tube.new("London").read
 
 # Or load your xml
 mycity = Map::Tube.new_from_xml("My City", "path/to/xml").read
+```
 
-# Get all the line names
+**Line/Station names**
+
+```ruby
 bucharest.lines.map(&:name) # => ["Linia M1", "Linia M2", "Linia M3", "Linia M4"]
-
-# Get all the station names
 bucharest.stations.map(&:name)
+```
 
-# Get the shortest path between two stations
+**Get the shortest path between two stations**
+
+```ruby
+route = london.get_shortest_route("Paddington", "Monument")
+=> #<Map::Tube::Route:0x007fd81986b160
+ @arrival_station=#<Map::Tube::Station:0x007fd819168430 @id="M009", @line="Circle,District", @links=#<Set: {"T009", "C008", "B003"}>, @name="Monument">,
+ @departure_station=#<Map::Tube::Station:0x007fd818b953a0 @id="P001", @line="District,Circle,Hammersmith & City,Bakerloo", @links=#<Set: {"B008", "W007", "E011", "R010"}>, @name="Paddington">,
+ @intermediate_stations=
+  [#<Map::Tube::Station:0x007fd8191ba230 @id="E011", @line="Circle,District,Hammersmith & City,Bakerloo", @links=#<Set: {"P001", "M005", "B001"}>, @name="Edgware Road">,
+   #<Map::Tube::Station:0x007fd818c3c8f8
+    @id="B001",
+    @line="Circle,Hammersmith & City,Bakerloo,Metropolitan,Jubilee",
+    @links=#<Set: {"B018", "R004", "M005", "G008", "S023", "E011", "F004"}>,
+    @name="Baker Street">,
+   #<Map::Tube::Station:0x007fd818c1eb50 @id="B018", @line="Central,Jubilee", @links=#<Set: {"G009", "B001", "O005", "M004"}>, @name="Bond Street">,
+   #<Map::Tube::Station:0x007fd818bdf3d8 @id="G009", @line="Victoria,Jubilee,Piccadilly", @links=#<Set: {"V002", "O005", "B018", "W027", "H036", "P006"}>, @name="Green Park">,
+   #<Map::Tube::Station:0x007fd818af7bf0 @id="W027", @line="Circle,District,Jubilee", @links=#<Set: {"S022", "G009", "W008", "E015"}>, @name="Westminster">,
+   #<Map::Tube::Station:0x007fd8191486f8 @id="W008", @line="Northern,Bakerloo,Jubilee,Waterloo & City", @links=#<Set: {"E015", "L002", "W027", "S021", "B003", "K001"}>, @name="Waterloo">,
+   #<Map::Tube::Station:0x007fd818c37b28 @id="B003", @line="Central,DLR,Northern,Waterloo & City", @links=#<Set: {"S002", "S024", "L013", "M011", "L012", "W008", "M009"}>, @name="Bank">]>
+
+route.pretty
+# => "Paddington -> Edgware Road -> Baker Street -> Bond Street -> Green Park -> Westminster -> Waterloo -> Bank -> Monument"
+```
+
+```ruby
 route = bucharest.get_shortest_route("Dristor 1", "Pipera")
 
 # => #<Map::Tube::Route:0x007f9769c5a550
@@ -52,7 +78,6 @@ route = bucharest.get_shortest_route("Dristor 1", "Pipera")
    #<Map::Tube::Station:0x007f976a08dcd0 @id="M2-03", @line="M2", @links=#<Set: {"M2-02", "M2-04"}>, @name="Aviatorilor">,
    #<Map::Tube::Station:0x007f976a08e018 @id="M2-02", @line="M2", @links=#<Set: {"M2-01", "M2-03"}>, @name="Aurel Vlaicu">]>
 
-# Pretty print the route
 route.pretty
 # => "Dristor 1 -> Mihai Bravu -> Timpuri Noi -> Piața Unirii 1 -> Piața Unirii 2 -> Universitate -> Piața Romană -> Piața Victoriei -> Aviatorilor -> Aurel Vlaicu -> Pipera"
 ```
