@@ -1,5 +1,8 @@
 # Map::Tube
 
+[![Build Status](https://travis-ci.org/radubogdan/map-tube.svg?branch=master)](https://travis-ci.org/radubogdan/map-tube)
+[![Gem Version](https://badge.fury.io/rb/map-tube.svg)](https://badge.fury.io/rb/map-tube)
+
 The core module to process the map data. It provides the interface to find the shortest route in terms of stoppage between two nodes.
 
 ## Installation
