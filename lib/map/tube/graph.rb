@@ -38,6 +38,10 @@ module Map
         find_by(:line, :name, line_name)
       end
 
+      def output_graph
+        Graphviz.new(self).generate
+      end
+
       private
 
       def find_by(model, attribute, value)
