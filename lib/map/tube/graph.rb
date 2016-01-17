@@ -38,7 +38,19 @@ module Map
         find_by(:line, :name, line_name)
       end
 
-      def output_graph
+      def to_h
+        {}.tap do |hash|
+          @stations.each do |station|
+            hash[station.name] = []
+            station.links.each do |link|
+              curr_link = self.get_station_by_id(link)
+              hash[station.name] << curr_link.name
+            end
+          end
+        end
+      end
+
+      def graphviz
         Graphviz.new(self).generate
       end
 
