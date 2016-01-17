@@ -44,14 +44,14 @@ module Map
             hash[station.name] = []
             station.links.each do |link|
               curr_link = self.get_station_by_id(link)
-              hash[station.name] << curr_link.name
+              hash[station.name] << curr_link.name unless curr_link.name == station.name
             end
           end
         end
       end
 
       def graphviz
-        Graphviz.new(self).generate
+        Graphviz.new(self)
       end
 
       private
