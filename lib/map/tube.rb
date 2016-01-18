@@ -1,4 +1,5 @@
 require "nokogiri"
+require "graphviz"
 require "map/tube/version"
 require "map/tube/exceptions"
 require "map/tube/station"
@@ -7,6 +8,7 @@ require "map/tube/route"
 require "map/tube/graph"
 require "map/tube/parser"
 require "map/tube/map_loader"
+require "map/tube/graphviz"
 
 module Map
   module Tube

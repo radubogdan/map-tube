@@ -88,6 +88,15 @@ route.pretty
 # => "Dristor 1 -> Mihai Bravu -> Timpuri Noi -> Piața Unirii 1 -> Piața Unirii 2 -> Universitate -> Piața Romană -> Piața Victoriei -> Aviatorilor -> Aurel Vlaicu -> Pipera"
 ```
 
+**Generate images**
+
+```ruby
+bucharest = Map::Tube.new("Bucharest").read;
+bucharest.graphviz.generate.output(png: "bucharest.png")
+```
+
+![Bucharest](http://i.imgur.com/8RBuGi6.png)
+
 ## Documentation
 
 **Map::Tube**
@@ -120,6 +129,8 @@ route.pretty
     - line - Map::Tube::Line object
   - `#add_station(station)` *-> Map::Tube::Graph*
     - station - Map::Tube::Station object
+  - `#to_h` *-> Hash*
+  - `#graphviz` *->Map::Tube::Graphviz*
 
 **Map::Tube::Line**
   - `.new(id, name, color)`
@@ -156,6 +167,11 @@ route.pretty
     - file_handle - File.open(path)
       - path - String - path to xml
   - `#parse` *-> Map::Tube::Graph*
+
+**Map::Tube::Graphviz**
+  - `.new(graph)`
+    - graph - Map::Tube::Graph
+  - `#generate` *-> GraphViz*
 
 **Map::Tube::Exceptions**
   - StationException

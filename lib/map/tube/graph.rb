@@ -38,6 +38,22 @@ module Map
         find_by(:line, :name, line_name)
       end
 
+      def to_h
+        {}.tap do |hash|
+          @stations.each do |station|
+            hash[station.name] = []
+            station.links.each do |link|
+              curr_link = self.get_station_by_id(link)
+              hash[station.name] << curr_link.name unless curr_link.name == station.name
+            end
+          end
+        end
+      end
+
+      def graphviz
+        Graphviz.new(self)
+      end
+
       private
 
       def find_by(model, attribute, value)

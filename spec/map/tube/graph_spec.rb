@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe Map::Tube::Graph do
   let(:subject) {
-    Map::Tube::Parser.
-      new(File.
-        open("data/bucharest-map.xml")
-      ).parse!
+    Map::Tube.new("Bucharest").read
   }
 
   describe "#add_station" do
@@ -80,6 +77,12 @@ describe Map::Tube::Graph do
 
     it "should return an exception if line with that name does not exist" do
       expect { subject.get_line_by_name("Line 2") }.to raise_error(Map::Tube::Exceptions::LineException)
+    end
+  end
+
+  describe "#to_h" do
+    it "should convert to a hash with valid keys" do
+      expect(subject.to_h.keys).to eq subject.stations.map(&:name).uniq
     end
   end
 
