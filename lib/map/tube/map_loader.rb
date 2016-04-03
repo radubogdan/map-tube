@@ -23,7 +23,7 @@ module Map
       private
 
       def set_path_for_city
-        "data/#{filename(@city)}"
+        Gem.datadir("map-tube") + "/" + filename(@city)
       end
 
       def filename(city_name)
