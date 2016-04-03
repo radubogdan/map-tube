@@ -5,7 +5,7 @@ describe Map::Tube::Parser do
   let(:subject) {
     Map::Tube::Parser.
       new(File.
-        open("data/bucharest-map.xml")
+        open("data/map-tube/bucharest-map.xml")
       )
   }
 

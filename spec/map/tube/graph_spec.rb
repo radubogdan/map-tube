@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Map::Tube::Graph do
   let(:subject) {
-    Map::Tube.new("Bucharest").read
+    Map::Tube.new_from_xml("Bucharest", "data/map-tube/bucharest-map.xml").read
   }
 
   describe "#add_station" do
